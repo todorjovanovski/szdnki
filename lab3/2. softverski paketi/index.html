@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Software</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function (){
+            var accOpts = {
+                header: "h1",
+                event: "click",
+                active: "none"
+            }
+            $(".accordion").accordion(accOpts)
+        })
+    </script>
+
+</head>
+<body>
+    <h2>Софверски пакети</h2>
+    <div id="categories">
+        <div class="head">
+            <h1>Медицина</h1>
+            <div class="menu">
+                <h3>MedIm</h3>
+                <h3>MedIA</h3>
+                <h3>FINKI-Med</h3>
+            </div>
+        </div>
+        <div class="head">
+            <h1>Образование</h1>
+            <div class="menu">
+                <h3>FINKI-Edu</h3>
+                <h3>Edu-Buddy</h3>
+                <h3>FINKI-LE</h3>
+                <h3>FINKI-Math</h3>
+            </div>
+        </div>
+        <div class="head">
+            <h1>Сметководство</h1>
+            <div class="menu">
+                <h3>eTax</h3>
+                <h3>FINKI-Tax</h3>
+                <h3>Tax-All</h3>
+                <h3>mySalary</h3>
+            </div>
+        </div>
+        <div class="head">
+            <h1>Игри</h1>
+            <div class="menu">
+                <h3>FINKI-game</h3>
+                <h3>Grelima</h3>
+                <h3>Edaolith</h3>
+                <h3>Foessa</h3>
+                <h3>Jeroen</h3>
+            </div>
+        </div>
+    </div>
+    <h2>За нас</h2>
+    <div id="about">
+        <div class="head accordion">
+            <div>
+                <h1>Тим</h1>
+                <div class="menu">
+                    <h3>Алберт Ајнштајн</h3>
+                    <h3>Ален Тјуринг</h3>
+                    <h3>Архимед</h3>
+                </div>
+            </div>
+        </div>
+        <div class="head accordion">
+            <h1 class="">Претставништва</h1>
+            <div class="menu">
+                <h3>Скопје</h3>
+                <h3>Прилеп</h3>
+                <h3>Велес</h3>
+            </div>
+        </div>
+        <div class="head accordion">
+            <h1 class="">Контакт</h1>
+            <div class="menu">
+                <h3>Ул. Есенска 24/5 1000 Скопје</h3>
+                <h3>+38921234567</h3>
+                <h3>finkiit@iaispit.com</h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

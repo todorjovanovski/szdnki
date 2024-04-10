@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tab Component</title>
+    <script src="../jquery/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("div").hide();
+            $("input").click(function () {
+                $("div").hide();
+                $("input").removeClass("button")
+                let id = $(this).attr("id")
+                $(this).addClass("button")
+                $("#" + id + "Div").show()
+            })
+        })
+    </script>
+    <style>
+        .button {
+            background: #99fffc;
+            font-weight: bold;
+            font-style: italic;
+        }
+        input {
+            font-style: italic;
+            text-align: left;
+            width: 150px;
+            padding: 10px;
+            margin-right: 5px;
+            border-radius: 1px;
+            border: 1px solid lightsteelblue;
+        }
+        nav {
+            width: 500px;
+            background: #ffd500;
+            padding: 20px;
+            border: 1px solid grey;
+        }
+        div {
+            width: 500px;
+            padding: 20px;
+            background: lightskyblue;
+            border: 1px solid grey;
+        }
+    </style>
+
+
+
+</head>
+<body>
+
+    <nav>
+        <p>Custom tab</p>
+        <input type="button" value="Open Start" id="start">
+        <input type="button" value="Connect" id="connect">
+        <input type="button" value="Pin apps" id="pin">
+    </nav>
+    <div id="startDiv">
+        <p>Start tab</p>
+    </div>
+    <div id="connectDiv">
+        <p>Connect tab</p>
+    </div>
+    <div id="pinDiv">
+        <p>Pin apps tab</p>
+    </div>
+
+</body>
+</html>

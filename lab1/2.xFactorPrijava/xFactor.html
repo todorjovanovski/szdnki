@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>X-Factor</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        p {
+            width: 200px;
+            display: inline-block;
+            margin: 5px;
+        }
+        #prijavi {
+            margin: 5px;
+        }
+        #greska {
+            font-size: 20px;
+            color: darkred;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function prijava() {
+            var tekst = document.getElementsByClassName("pole")
+            var radio = document.getElementsByClassName("radio")
+            var selected = document.getElementById("lista")
+            console.log(selected.value)
+            if(tekst[0].value === "" || tekst[1].value === "")
+                document.getElementById("greska").innerHTML = "Сите полиња се задолжителни!"
+            else {
+                document.getElementById("greska").innerHTML = ""
+                var string = tekst[0].value + " " + tekst[1].value;
+                if(radio[0].checked)
+                    string += ", Mашко, ";
+                else
+                    string += ", Женско, "
+                string += selected.value + " - успешно се пријавивте."
+                confirm(string)
+            }
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <div>
+            <p>Име</p>
+            <input class="pole" type="text">
+        </div>
+        <div>
+            <p>Уметничко име</p>
+            <input class="pole" type="text">
+        </div>
+        <div>
+            <p>Пол</p>
+            <input class="radio" type="radio" checked name="pol"> Машки
+            <input class="radio" type="radio" name="pol"> Женски
+        </div>
+        <div>
+            <p>Жанр:</p>
+            <select id="lista">
+                <option value="Classical Music">Classical Music</option>
+                <option value="Rock n Roll Music">Rock n Roll Music</option>
+                <option value="Hip-Hop Music">Hip-Hop Music</option>
+                <option value="Pop Music">Pop Music</option>
+            </select>
+        </div>
+        <div>
+            <input id="prijavi" type="button" onclick="prijava()" value="Пријави се">
+        </div>
+    </form>
+    <p id="greska"></p>
+</body>
+</html>

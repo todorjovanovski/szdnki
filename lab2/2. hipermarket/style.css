@@ -1,0 +1,28 @@
+ul, h1{
+    color: whitesmoke;
+    list-style-type: none;
+    background: lightsteelblue;
+    border: 1px solid lightgrey;
+    text-align: center;
+    padding: 20px;
+}
+li {
+    display: inline-block;
+    padding: 5px;
+    border: 1px dotted whitesmoke;
+    border-radius: 5px;
+    width: 300px;
+}
+li:hover {
+    cursor: pointer;
+}
+a {
+    text-decoration: none;
+    font-size: 20px;
+    color: whitesmoke;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+}

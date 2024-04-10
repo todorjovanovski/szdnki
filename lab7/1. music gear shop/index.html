@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music gear</title>
+    <link rel="stylesheet" href="jquery/jquery-ui.css">
+    <script src="jquery/jquery.js"></script>
+    <script src="jquery/jquery-ui.js"></script>
+    <style>
+        li:nth-child(odd) { background: lightgray;}
+        li:nth-child(even) { background: white; }
+        .ui-widget-header{
+            background: lightslategray;
+            border-color: black;
+        }
+        #players,#mixers,.baskets{
+            width: 200px;
+            list-style-type: none;
+            padding: 20px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        #players li, #mixers li,.baskets li{
+            padding: 5px;
+            border: 1px solid darkgray;
+            background: lightgray;
+        }
+    </style>
+    <script>
+        $(document).ready(function (){
+            var cd = $("#players > li").html().split(" ")[0];
+            var mix = $("#mixers > li").html().split(" ")[0];
+            $("#tabs").tabs();
+            $("#players, #mixers").sortable({
+                connectWith: ".baskets",
+                receive: function (event,ui){
+                    var item = ui.item;
+                    $(".baskets li").each(function (idx,data){
+                        if (item.html() === data.innerHTML){
+                            $(this).remove();
+                        }
+                    })
+                },
+            }).disableSelection();
+
+
+            $(".baskets").sortable({
+                 connectWith: "#players, #mixers",
+                 cancel: "li:first-child",
+                stop: function (event,ui){
+                    if ((ui.item.hasClass("CD"))){
+                        $("#players").append(ui.item);
+                    }
+                    else{
+                        $("#mixers").append(ui.item);
+                    }
+
+                },
+                receive: function (event,ui){
+                     var item = ui.item
+                     var flag = 0;
+                     $(".baskets li").each(function (idx,data){
+                         if (item.html() === data.innerHTML){
+                             flag++;
+                         }
+                     })
+                    if (flag === 1){
+                        $(".baskets").append(item);
+                    }
+                }
+            }).disableSelection();
+        })
+    </script>
+</head>
+<body>
+<h1>Music gear shop</h1>
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Players</a></li>
+        <li><a href="#tabs-2">Mixers</a></li>
+        <li><a href="#tabs-3">Basket</a></li>
+    </ul>
+    <div id="tabs-1">
+        <ul id="players">
+            <li class="CD">CD Player 1</li>
+            <li class="CD">CD Player 2</li>
+            <li class="CD" >CD Player 3</li>
+            <li class="CD">CD Player 4</li>
+            <li class="CD">CD Player 5</li>
+        </ul>
+        <ul class="baskets">
+            <li id="can">Fill me up!</li>
+        </ul>
+    </div>
+    <div id="tabs-2">
+        <ul id="mixers">
+            <li class="Mix">Mix set 1</li>
+            <li class="Mix">Mix set 2</li>
+            <li class="Mix">Mix set 3</li>
+            <li class="Mix">Mix set 4</li>
+            <li class="Mix">Mix set 5</li>
+        </ul>
+        <ul class="baskets">
+            <li>Fill me up!</li>
+        </ul>
+    </div>
+    <div id="tabs-3">
+        <ul class="baskets">
+            <li>Fill me up!</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

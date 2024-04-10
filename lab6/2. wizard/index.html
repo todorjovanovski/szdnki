@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>form</title>
+  <link rel="stylesheet" href="jquery/jquery-ui.css">
+  <script src="jquery/jquery.js"></script>
+  <script src="jquery/jquery-ui.js"></script>
+  <script>
+    $(document).ready(function(){
+      $info=$("#info input");
+      $pages=$(".page");
+      $($pages[1]).hide();
+      $($pages[2]).hide();
+      $("#sentMessages").selectable()
+      $("#password").dialog({
+        autoOpen: true,
+        modal: true,
+        title: "Set your password",
+        open: function(event, ui){
+          $(".ui-dialog-titlebar-close").hide();
+          $("h3").hide();
+        },
+        buttons:{
+          Ok: function(){
+            var pass1=$("#pass1").val();
+            var pass2=$("#pass2").val();
+            if(pass1===pass2){
+              $("#password").dialog("close");
+              $("h3").hide();
+            }else $("h3").show();
+          }
+        }
+      })
+      $("#write").dialog({
+        autoOpen: false,
+        modal: true,
+        title: "Message content",
+        buttons:{
+          Insert: function(){
+            $("#content").append($("#insertContent").val());
+            $("#write").dialog("close");
+          },
+          Clear: function(){
+            $("#content").html("");
+          }
+        }
+      })
+      $("#sendScreen").dialog({
+        autoOpen: false,
+        modal: true,
+        title: "Enter your password",
+        buttons:{
+          Send: function(){
+            var pass1=$("#pass1").val();
+            var pass2=$("#pass3").val();
+            if(pass1===pass2){
+              $("#sentMessages").append("<li class=\"ui-widget-content\">To: "+$($info[0]).val()+"<br> Subject: "+$($info[2]).val()+"<br></li>")
+              $("#sendScreen").dialog("close");
+              $("h3").hide();
+              $("#success").dialog("open");
+            }else $("h3").show();
+          }
+        }
+      })
+      $("#success").dialog({
+        autoOpen: false,
+        modal: true
+      })
+      $("#insert").click(function(){
+        $("#to").append($($info[0]).val())
+        $("#subject").append($($info[2]).val())
+        $("#cc").append($($info[1]).val())
+        $("#write").dialog("open");
+      })
+      $("#send").click(function(){
+        $("#sendScreen").dialog("open");
+      })
+      $("#next").click(function(){
+        $tabs=$("#wizNav2 ul li");
+        for(var i=0;i<$pages.length-1;i++){
+          if($($pages[i]).is(":visible")){
+            $($pages[i]).hide()
+            $($tabs[i]).removeAttr("class")
+            $($tabs[i]).addClass("passed");
+            $($tabs[i+1]).removeAttr("class")
+            $($tabs[i+1]).addClass("active");
+            $($tabs[i+2]).removeAttr("class")
+            $($tabs[i+2]).addClass("pending");
+            $($pages[i+1]).show()
+            break;
+          }
+        }
+      })
+      $("#prev").click(function(){
+        for(var i=$pages.length;i>=1;i--){
+          if($($pages[i]).is(":visible")){
+            $($pages[i]).hide()
+            $($tabs[i]).removeAttr("class")
+            $($tabs[i]).addClass("pending");
+            $($tabs[i-1]).removeAttr("class")
+            $($tabs[i-1]).addClass("active");
+            $($tabs[i-2]).removeAttr("class")
+            $($tabs[i-2]).addClass("passed");
+            $($pages[i-1]).show()
+            break;
+          }
+        }
+      })
+      $("#del").click(function(){
+        $(".ui-selected").remove();
+      })
+    })
+  </script>
+  <style>
+    h3{
+      color: red;
+    }
+    #content{
+      height: 100px;
+      width: 400px;
+      background: forestgreen;
+      position: absolute;
+    }
+    #insertContent{
+      height: 100px;
+      width: 400px;
+      position: absolute;
+    }
+    #wizNav{
+      background: dodgerblue;
+      width: 400px;
+      height: 30px;
+    }
+    #wizNav button{
+      margin: 5px;
+      margin-left: 65px;
+      left: 200px;
+      background: orangered;
+      border: none;
+      width: 100px;
+      color: whitesmoke;
+      cursor: pointer;
+    }
+    #wizNav2{
+      background: dodgerblue;
+      width: 400px;
+      height: 30px;
+    }
+    #wizNav2 ul li{
+      list-style-type: none;
+      display: inline-block;
+      margin: 5px;
+      border-bottom: 3px solid darkblue;
+    }
+    #sentMessages{
+      list-style-type: none;
+      height: 200px;
+      width:300px;
+    }
+    .msg{
+      background: gray;
+      border: 1px solid black;
+    }
+    .ui-selected{
+      background: cadetblue;
+    }
+    .active{
+      background: orangered;
+    }
+    .passed{
+      background: gray;
+    }
+    .pending{
+      background: lightblue;
+    }
+  </style>
+</head>
+<body>
+<div id="wizNav2">
+  <ul>
+    <li num="0" class="active">Email</li>
+    <li num="1" class="pending">Sent</li>
+    <li num="2" class="pending">Done</li>
+  </ul>
+</div>
+<div class="page">
+  <div>
+    <h1>New Message:</h1>
+  <div id="info">
+    <label>To:</label><input type="text"><br><br>
+    <label>CC:</label><input type="text"><br><br>
+    <label>Subject:</label><input type="text"><br><br>
+  </div>
+  <div>
+    <label>Content:</label><br><span id="content"></span><br><br>
+  </div>
+  <br><br><br><br>
+  <div>
+    <button id="insert">Insert</button><button id="send">Send</button>
+  </div>
+</div>
+<div id="password">
+  <h3>Passwords don't match!</h3>
+  <label>New password:</label><input type="password" id="pass1"><br>
+  <label>Repeat password:</label><input type="password" id="pass2"><br>
+</div>
+<div id="write">
+  <div id="to"><label>To: </label></div>
+  <div id="subject"><label>Subject: </label></div>
+  <div id="cc"><label>CC: </label></div>
+  <textarea id="insertContent"></textarea>
+</div>
+<div id="sendScreen">
+  <h3>Passwords don't match!</h3>
+  <label>Password:</label><input type="password" id="pass3">
+</div>
+<div id="success">Successfully sent!</div>
+</div>
+
+<div class="page">
+  <h1>Sent items:</h1>
+  <ul id="sentMessages" style="overflow: scroll">
+
+  </ul>
+  <button id="del">Delete</button>
+</div>
+
+<div class="page">
+  <h1>DONE!</h1>
+</div>
+<div id="wizNav">
+  <button id="prev">Previous</button><button id="next">Next</button>
+</div>
+</body>
+</html>

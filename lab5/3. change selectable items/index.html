@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Selectable Items</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <style>
+        #feedback { font-size: 20px; margin-left: 5px;}
+        #selectable .ui-selecting { background: greenyellow; color: #7c7979; }
+        #selectable .ui-selected { background: yellowgreen; color: white; }
+        #selectable { list-style-type: none; margin-top: 20px; margin-left: 5px; padding: 0; width: 300px; }
+        #selectable li { margin: 3px; padding: 0.4em; font-size: 20px; height: 18px; }
+        label { display: block;}
+        section { margin: 10px; }
+        span { background: #afec3b; border-top: 1px solid black; border-bottom: 1px solid black;}
+    </style>
+    <script>
+        $(document).ready(function () {
+            $( "#selectable" ).selectable({
+                stop: function() {
+                    var result = $( "#select-result" ).empty();
+                    $( ".ui-selected", this ).each(function() {
+                        result.append( this.innerHTML + "\t");
+                    });
+                }
+            });
+            $("#addItem").click(function () {
+                $("<li>").addClass("ui-widget-content").append($("#item").val()).appendTo($("#selectable"))
+            })
+            $("#deleteItems").click(function () {
+                let selected = $(".ui-selected")
+                for(let i=0; i<selected.length; i++) {
+                    selected[i].remove()
+                }
+                $("#select-result").html("none")
+            })
+        })
+    </script>
+</head>
+<body>
+<div id="selectableItems">
+
+    <section><label for="item">New Item:</label></section>
+    <section><input type="text" id="item"></section>
+    <section>
+    <button id="addItem">Add New Item</button>
+    <button id="deleteItems">Delete Selected Items</button>
+    </section>
+    <p id="feedback">
+        <span>Selected items:</span> <span id="select-result">none</span>
+    </p>
+    <ol id="selectable">
+        <li class="ui-widget-content">Item 1</li>
+        <li class="ui-widget-content">Item 2</li>
+        <li class="ui-widget-content">Item 3</li>
+        <li class="ui-widget-content">Item 4</li>
+        <li class="ui-widget-content">Item 5</li>
+        <li class="ui-widget-content">Item 6</li>
+    </ol>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Memory</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="../jquery/jquery.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            let clicked = []
+            let size = 0
+            $(".row div span:last-child").hide();
+            $(".row div")
+                .addClass("base")
+                .hover(function () {
+                    $(this).removeClass("base")
+                    $(this).addClass("hover")
+            }, function () {
+                    $(this).addClass("base")
+                    $(this).removeClass("hover")
+            })
+                .click(function () {
+                    $(this).find("span:last-child").show()
+                    $(this).find("span:first-child").hide()
+                    clicked[size++] = $(this)
+                    clicked[size-1].addClass("clicked")
+                    if(size === 2) {
+                        if(clicked[0].find("span:last-child").html() === clicked[1].find("span:last-child").html()
+                            && clicked[0].find("span:first-child").html() !== clicked[1].find("span:first-child").html()) {
+                            clicked[0].removeClass("base").addClass("checked")
+                            clicked[1].removeClass("base").addClass("checked")
+                        }
+                    }
+                    if(size === 3) {
+                        if(clicked[0].find("span:last-child").html() !== clicked[1].find("span:last-child").html()){
+                            clicked[0].find("span:last-child").hide()
+                            clicked[0].find("span:first-child").show()
+                            clicked[1].find("span:last-child").hide()
+                            clicked[1].find("span:first-child").show()
+                            clicked[0].removeClass("clicked")
+                            clicked[1].removeClass("clicked")
+                        }
+                        size = 0
+                        clicked[size++] = $(this)
+                    }
+                })
+        })
+    </script>
+</head>
+<body>
+    <div id="game">
+        <div class="row">
+            <div><span>1</span><span>Initial D</span></div>
+            <div><span>2</span><span>Attack on Titan</span></div>
+            <div><span>3</span><span>Attack on Titan</span></div>
+            <div><span>4</span><span>Black Clover</span></div>
+        </div>
+        <div class="row">
+            <div><span>5</span><span>HunterXHunter</span></div>
+            <div><span>6</span><span>Banana Fish</span></div>
+            <div><span>7</span><span>Black Clover</span></div>
+            <div><span>8</span><span>Dr. Stone</span></div>
+        </div>
+        <div class="row">
+            <div><span>9</span><span>Dr. Stone</span></div>
+            <div><span>10</span><span>Initial D</span></div>
+            <div><span>11</span><span>Dragon Ball Z</span></div>
+            <div><span>12</span><span>Bleach</span></div>
+        </div>
+        <div class="row">
+            <div><span>13</span><span>HunterXHunter</span></div>
+            <div><span>14</span><span>Banana Fish</span></div>
+            <div><span>15</span><span>Bleach</span></div>
+            <div><span>16</span><span>Dragon Ball Z</span></div>
+        </div>
+    </div>
+</body>
+</html>

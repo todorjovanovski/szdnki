@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Book</title>
+    <link rel="stylesheet" href="../jquery/jquery-ui.css">
+    <script src="../jquery/jquery.js"></script>
+    <script src="../jquery/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#modal").dialog({
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                    Add: function () {
+                        $("#titleP").html("Title: " + $("#title").val())
+                        $("#authorP").html("Author: " + $("#author").val())
+                        $("#commentP").html("Comment:" + $("#comment").val())
+                        $("#modal").dialog("close")
+                    }
+                }
+            })
+
+            $("#addBook").click(function () {
+                $("#modal").dialog("open")
+            })
+        })
+    </script>
+
+</head>
+<body>
+    <button id="addBook">Add Book</button>
+    <div id="modal">
+        <p>Title:</p>
+        <input type="text" id="title">
+        <p>Author:</p>
+        <input type="text" id="author">
+        <p>Comment:</p>
+        <textarea placeholder="Why do you recommend this book..." id="comment" ></textarea>
+    </div>
+    <div>
+        <p id="titleP"></p>
+        <p id="authorP"></p>
+        <p id="commentP"></p>
+    </div>
+</body>
+</html>

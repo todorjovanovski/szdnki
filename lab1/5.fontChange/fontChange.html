@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Font</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<style>
+    #menu {
+        width: 400px;
+        background: #23ade8;
+        border: 1px solid #363636;
+    }
+    #menu input {
+        margin: 10px;
+    }
+    #menu h1{
+        margin: 10px;
+    }
+    #text h1{
+        font-size: 30px;
+    }
+    #text p{
+        font-size: 16px;
+    }
+</style>
+<script>
+
+    $(document).ready(function () {
+        var fontH1 = 30
+        var fontP = 16
+        $("#base").click(function () {
+            $("#text h1").css("fontSize", "30px")
+            $("#text p").css("fontSize", "16px")
+            fontH1 = 30
+            fontP = 16
+        })
+        $("#up").click(function () {
+            $("#text h1").css("fontSize", fontH1*1.5 + "px");
+            $("#text p").css("fontSize", fontP*1.5 + "px");
+            fontH1 *= 1.5
+            fontP *= 1.5
+        })
+        $("#down").click(function () {
+            $("#text h1").css("fontSize", fontH1/1.5 + "px");
+            $("#text p").css("fontSize", fontP/1.5 + "px");
+            fontH1 /= 1.5
+            fontP /= 1.5
+        })
+    })
+</script>
+<body>
+    <div id="menu">
+        <h1><i>Големина на фонт:</i></h1>
+        <input type="button" id="base" value="Почетна">
+        <input type="button" id="up" value="Зголеми">
+        <input type="button" id="down" value="Намали">
+    </div>
+    <div id="text">
+        <h1>How to connect to the internet</h1>
+        <p>
+            If you want to access the internet at home, you'll need an Internet Service Provider (ISP) and a
+            router to connect to the ISP. ISPs often provide a router with their service. This means more than
+            one computer or device in your house can use the broadband connection at the same time.
+            Some devices can also use Wi-Fi to connect to the router. It is helpful to get recommendations from
+            a reliable source, or from friends who have an ISP. When you are researching the ISP on your own,
+            get accurate, detailed information about their services.
+            <br><br>
+            As ISPs often improve their services, it is useful to have updated information about what they
+            can offer. Go to your ISP's website and see if they use an online checker where you can find out
+            what services are available in your area. You might need to use your postcode or telephone
+            number in the online checker.
+        </p>
+    </div>
+</body>
+</html>

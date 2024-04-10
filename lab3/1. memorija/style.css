@@ -1,0 +1,52 @@
+body {
+    font-size: 30px;
+    font-family: Verdana, sans-serif;
+}
+
+.row {
+    display: inline-block;
+    float: left;
+    clear: both;
+}
+
+.row div {
+    border: 2px solid #424242;
+    display: inline-block;
+    margin: 10px;
+    width: 190px;
+    height: 190px;
+    line-height: 190px;
+    text-align: center;
+    vertical-align: center;
+    padding: 5px;
+}
+
+.base {
+    background: linear-gradient(#1E5799, #5da5e3);
+    color: whitesmoke;
+}
+
+.checked {
+    background: linear-gradient(#888888, #525252);
+    pointer-events: none;
+    color: whitesmoke;
+}
+
+.clicked {
+    pointer-events: none;
+}
+
+.hover {
+    cursor: pointer;
+    background: linear-gradient(#7cd70b, mediumseagreen);
+    color: dodgerblue;
+}
+
+.row div:nth-child(2n) {
+    border: 2px solid #dc2020;
+}
+
+.row div span:last-child {
+    font-size: 20px;
+}
+
